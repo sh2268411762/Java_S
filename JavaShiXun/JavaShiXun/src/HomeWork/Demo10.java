@@ -5,7 +5,7 @@ package HomeWork;
 import java.util.Scanner;
 
 /**
-*  @Description     功能
+*  @Description     倒序打印一个不多于5位的整数
 *  @author          孙豪
 *  @version         版本
 *  @Date            2020年6月23日下午7:03:28
