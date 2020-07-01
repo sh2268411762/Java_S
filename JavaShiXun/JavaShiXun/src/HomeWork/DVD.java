@@ -8,6 +8,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.Scanner;
 
+import com.mysql.jdbc.ResultSet;
+import java.sql.Statement;
+
 /**
 *  @Description     DVD管理
 *  JDBC:
@@ -23,7 +26,6 @@ import java.util.Scanner;
 public class DVD 
 {
 	
-private static PreparedStatement prepareStatement;
 
 //	jdbc:mysql://localhost:3306/cms
 //		com.mysql.jdbc.Driver
@@ -124,6 +126,50 @@ private static PreparedStatement prepareStatement;
 					else
 					{
 						System.out.println("删除失败！");
+					}
+					ps.close();
+					conn.close();
+				}
+				else if(input == 3)
+				{
+					System.out.println("请输入要借阅的id：");
+					int id = sc.nextInt();
+					System.out.println("请输入借阅人姓名：");
+					String name = sc.next();
+					System.out.println("请输入借阅日期：");
+					String date = sc.next();
+					PreparedStatement ps= conn.prepareStatement("update dvd set state = 1,borName = ?,borDate = ?,times = times + 1 where id = ?");
+						
+					ps.setInt(3, id);
+					ps.setString(1, name);
+					ps.setString(2, date);
+					int row = ps.executeUpdate();
+					if(row >= 1)
+					{
+						System.out.println("借阅成功！");						
+					}
+					else
+					{
+						System.out.println("借阅失败！");
+					}
+					ps.close();
+					conn.close();
+				}
+				else if(input == 4)
+				{
+					System.out.println("请输入要归还的id：");
+					int id = sc.nextInt();
+					PreparedStatement ps= conn.prepareStatement("update dvd set state = 0,borName = '',borDate = null where id = ?");
+						
+					ps.setInt(1, id);
+					int row = ps.executeUpdate();
+					if(row >= 1)
+					{
+						System.out.println("归还成功！");						
+					}
+					else
+					{
+						System.out.println("归还失败！");
 					}
 					ps.close();
 					conn.close();
