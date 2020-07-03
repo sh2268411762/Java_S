@@ -10,7 +10,7 @@ import NBAPlayer.DAONba;
 import NBAPlayer.NBAView;
 
 /**
-*  @Description     输入输出
+*  @Description     登录界面
 *  @author          孙豪
 *  @version         1.0
 *  @Date            2020年7月2日下午9:29:06

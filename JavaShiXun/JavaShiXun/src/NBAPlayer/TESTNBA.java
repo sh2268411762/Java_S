@@ -17,6 +17,6 @@ public class TESTNBA
 	public static void main(String[] args) 
 	{
 		VIEWNba view = new VIEWNba();
-		view.menu1();
+		view.menu1();//系统入口
 	}
 }

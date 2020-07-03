@@ -22,21 +22,22 @@ public class JDBCUtil
 		try {
 			//1、加载驱动
 			Class.forName("com.mysql.jdbc.Driver");
-			//2、
+			//2、获取连接
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/homework","root","sunhao2268411762");
-			//3、
+			//3、预执行
 			PreparedStatement ps = conn.prepareStatement(sql);
 			if(list!=null) {
+				//说明该语句中有问号
 				for(int i =0;i<list.size();i++) {
 					ps.setObject(i+1,list.get(i));
 				}
 			}
-			
+			//执行
 			int row = ps.executeUpdate();
-			
+			//释放内存
 			ps.close();
 			conn.close();
-			
+			//返回值
 			return row;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -44,20 +45,22 @@ public class JDBCUtil
 		}
 	}
 	
-	//查的封装
+	//查的封装（用于显示NBA球员的所有信息）
 	public List<List<Object>> query(String sql,List<Object> list) {
 		try {
+			//1、加载驱动
 			Class.forName("com.mysql.jdbc.Driver");
-			
+			//2、获取连接
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/homework","root","sunhao2268411762");
-			
+			//3、预执行
 			PreparedStatement ps = conn.prepareStatement(sql);
 			if(list!=null) {
+				//说明有句号
 				for(int i =0;i<list.size();i++) {
 					ps.setObject(i+1,list.get(i));
 				}
 			}
-			
+			//4、执行
 			ResultSet ret = ps.executeQuery();
 			//定义二维数组，一张表格
 			List<List<Object>> table = new ArrayList<List<Object>>();
@@ -73,11 +76,11 @@ public class JDBCUtil
 				//将当前行放入表格
 				table.add(row);
 			}
-			
+			//5、释放
 			ret.close();
 			ps.close();
 			conn.close();
-			
+			//返回值
 			return table;
 		} catch (Exception e) {
 			e.printStackTrace();
