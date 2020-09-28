@@ -10,7 +10,7 @@ package Fourth;
  * @Date 2020年9月25日下午7:28:26
  */
 
-class Aa
+class test
 {
 	void print()
 	{
@@ -18,7 +18,7 @@ class Aa
 	}
 }
 
-class Bb extends Aa
+class Bb extends test
 {
 	void print()
 	{
@@ -30,9 +30,9 @@ public class Poly
 {
 	public static void main(String[] args)
 	{
-		Aa a = new Aa(); // 父类对象实例化
+		test a = new test(); // 父类对象实例化
 		Bb b = new Bb(); // 子类对象实例化
-		Aa c = new Bb(); // 子类转换为父类（隐式转换）
+		test c = new Bb(); // 子类转换为父类（隐式转换）
 
 		a.print();
 		b.print();
